@@ -8,7 +8,7 @@ library(lsmeans)
 
 ################## GOBY VISION##########################
 ## preparing data
-colchange_goby_data<-read.csv("data/dynamic_camouflage/data_all_goby.csv", header=TRUE)
+colchange_goby_data<-read.csv("data_all_goby.csv", header=TRUE)
 head(colchange_goby_data)
 
 # defining the factors
