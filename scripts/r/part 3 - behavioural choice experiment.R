@@ -14,5 +14,5 @@ Input =("
                    ")
       
 Choice<-as.matrix(read.table(textConnection(Input),header=TRUE,row.names=1))
-chisq.test(Choice,correct=FALSE) 
+gitchisq.test(Choice,correct=FALSE) 
            

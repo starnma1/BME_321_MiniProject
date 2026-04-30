@@ -30,7 +30,7 @@ Comments on all four R files
     * clearly explained with brief comment for each
   * model validation
 
-    * only checked assumption of normality of residuals 
+    * only checked assumption of normality of residuals
     * QQ-plot doesn't look good, but is not addressed
   * interpretation
 
@@ -62,7 +62,7 @@ unless I specifically mention a difference
   * data import, screening, wrangling
 
     * minimal screening after data import, even not commented as such
-    * log transformation of JND values for green prawns (mentioned in paper)? 
+    * log transformation of JND values for green prawns (mentioned in paper)?
   * model fitting
 
     * no justification for excluding NA values from model fitting
@@ -108,16 +108,9 @@ unless I specifically mention a difference
 
 \## part 3 - behavioural choice ----------------------------------------
 
-* overview
+* not very clear what script is all about
 
-  * not entirely clear what script is all about
-  * 
-
-
-
-
-
-
-
-
+  * looked it up with AI: decision chamber section performed tests whether prawns actively choose correct background for camouflage (which is the case for both). chi squared test assessed whether the rate of deciding differed between green and red prawns (which was not the case)
+  * finding of chi squared test not included in report
+* values hardcoded
 
