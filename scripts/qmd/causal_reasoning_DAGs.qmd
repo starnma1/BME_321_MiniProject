@@ -1,10 +1,8 @@
 ---
-title: "Untitled"
+title: "Prawns paper: causal reasoning"
 author: "Clint Malyk"
 format: html
 editor: visual
-abstract-title: "Research question"
-abstract: "How do environmental stresses and resource availability influence reproductive success?"
 ---
 
 ## Notes on paper
@@ -82,7 +80,7 @@ ggdag(dag.object_1, layout = "manual") +
 
 ### 2. Experiment
 
-The prawn colour at time t (morph_t) depends on its colour at t0, the seaweed background it was placed in and the size, since large green prawns change colour to red more slowly in red background than smaller green prawns ("morph_t0" modifies the effect of "size"). Time influences both "morph_t" and the outcome JND_t.
+The prawn colour at time t (morph_t) depends on its colour at t0, the seaweed background it was placed in and the size, since large green prawns change colour to red more slowly in red background than smaller green prawns ("morph_t0" modifies the effect of "size"). Time influences both "morph_t" and the outcome JND_t:
 
 ```{r}
 #| label: fig-DAG-2
@@ -119,7 +117,7 @@ ggdag(dag.object_2) +
 
 ### 3. Experiment
 
-The colour "morph" of the prawn determines its choice of seaweed background, which leads to enhanced camouflage ("crypsis")
+The colour "morph" of the prawn determines its choice of seaweed background, which leads to enhanced camouflage ("crypsis"):
 
 ```{r}
 #| label: fig-DAG-3
