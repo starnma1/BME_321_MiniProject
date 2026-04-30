@@ -67,3 +67,4 @@ qqline(resid(model_pollack_1))
 
 jnd_pollack_tukey<-lsmeans(model_pollack_1, ~ seaweed|morph)
 pairs(jnd_pollack_tukey)
+
