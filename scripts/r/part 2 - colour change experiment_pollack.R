@@ -8,7 +8,7 @@ library(lsmeans)
 
 ################## POLLACK VISION##########################
 ## preparing data
-colchange_pollack_data<-read.csv("data_all_pollack.csv", header=TRUE)
+colchange_pollack_data<-read.csv("data/dynamic_camouflage/data_all_pollack.csv", header=TRUE)
 head(colchange_pollack_data)
 
 # defining the factors
