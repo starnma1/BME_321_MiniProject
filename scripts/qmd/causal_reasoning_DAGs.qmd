@@ -1,0 +1,146 @@
+---
+title: "Untitled"
+author: "Clint Malyk"
+format: html
+editor: visual
+abstract-title: "Research question"
+abstract: "How do environmental stresses and resource availability influence reproductive success?"
+---
+
+## Notes on paper
+
+The researchers note that previous research has focused on short-term colour change and that the drivers and the outcome of longer-term colour change for camouflage to predator vision haven't yet been properly quantified. The **chameleon prawn (Hippolyte varians)** has been shown previously to be **able to change colour** over different timescales, including driven by light intensity, periodic shifts between diurnal/nocturnal forms and slow changes in response to novel substrates. In addition, the different colour forms of **chameleon prawns may choose concealing algal substrates when displaced.**
+
+### Research gap:
+
+However, **there is little information on how colour change and behavioural traits may operate in tandem in order to improve camouflage** and reduce detection by predators over different spatial and temporal scales.
+
+### Experiments to close this gap:
+
+1.  Red and green chameleon prawns are placed in seaweed backgrounds of matching colour. Then pictures are taken, which are fed into a model of predator (goby and pollack) vision, to assess how well the predators can be expected to distinguish the prawns from their background, expressed as just noticable differences (JNDs)
+
+2.  Red and green chameleon prawns are placed in backgrounds, that do not match their colour. Colour change is then assessed over 30 days and camouflage to vision of two predators is measured using models of predator vision and assessing JNDs.
+
+3.  Red and green chameleon prawns are placed in a Y-maze where their choice of background is assessed. The visibility of the prawns in the respective backgrounds is again measured using JNDs.
+
+### Hypotheses:
+
+- If coloration is adaptive and increases prawn survival, the different colour forms will exhibit increased camouflage against their main seaweed substrate.
+
+- Colour change will induce alteration of prawn coloration towards the colour of the new substrate, reducing the level of colour mismatch
+
+- Prawns will show a strong behavioural preference for matching seaweed backgrounds when given a choice.
+
+### Methods:
+
+They used a polynomial mapping function to convert prawn and seaweed multispectral images from the camera colour space to fish vision. **This enables the causal reasoning from colour change/background choice -\> camouflage to predator vision**
+
+The results align with all the hypotheses.
+
+## DAGs
+
+```{r}
+#| include: false
+
+
+library(dagitty)
+library(ggdag)
+
+```
+
+### 1. Experiment
+
+We have the variables "morph" with levels "R" and "G" and "seaweed" with levels "lettuce and "dulse" -\> "seaweed" and "morph" are independent in this experiment; both determine JND:
+
+```{r}
+#| label: fig-DAG-1
+#| fig-cap: DAG for Experiment 1
+#| echo: false
+#| messages: false
+#| error: false
+
+dag.object_1 <- dagitty('dag {
+JND [outcome,pos="1.400,1.621"]
+morph [exposure,pos="-2.200,1.597"]
+seaweed [exposure,pos="-0.458,-0.456"]
+morph -> JND
+seaweed -> JND
+}
+')
+
+library(ggdag)
+
+ggdag(dag.object_1, layout = "manual") +
+  geom_dag_point(size = 28) +      # bigger nodes
+  geom_dag_text(size = 5) +        # bigger labels
+  theme_dag()
+
+
+
+
+```
+
+### 2. Experiment
+
+The prawn colour at time t (morph_t) depends on its colour at t0, the seaweed background it was placed in and the size, since large green prawns change colour to red more slowly in red background than smaller green prawns ("morph_t0" modifies the effect of "size"). Time influences both "morph_t" and the outcome JND_t.
+
+```{r}
+#| label: fig-DAG-2
+#| fig-cap: DAG for Experiment 2
+#| echo: false
+#| messages: false
+#| error: false
+
+dag.object_2 <- dagitty('dag {
+  morph_t0 [exposure]
+  seaweed
+  time
+  size
+  morph_t
+  JND_t [outcome]
+
+  morph_t0 -> morph_t
+  seaweed -> morph_t
+  time -> morph_t
+  morph_t -> JND_t
+  size -> morph_t
+  time -> JND_t
+}')
+
+
+library(ggdag)
+
+ggdag(dag.object_2) +
+  geom_dag_point(size = 29) +
+  geom_dag_text(size = 5) +
+  theme_dag()
+
+```
+
+### 3. Experiment
+
+The colour "morph" of the prawn determines its choice of seaweed background, which leads to enhanced camouflage ("crypsis")
+
+```{r}
+#| label: fig-DAG-3
+#| fig-cap: DAG for Experiment 3
+#| echo: false
+#| messages: false
+#| error: false
+
+dag.object_3 <- dagitty('dag {
+  morph [exposure]
+  choice [outcome]
+  crypsis
+
+  morph -> choice
+  choice -> crypsis
+}')
+
+library(ggdag)
+
+ggdag(dag.object_3) +
+  geom_dag_point(size = 28) +      # bigger nodes
+  geom_dag_text(size = 5) +        # bigger labels
+  theme_dag()
+```
