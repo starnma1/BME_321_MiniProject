@@ -91,8 +91,11 @@ rm(list = ls())
     # We will need to run post-hoc tests to see which groups are different.
   
   
-  jnd_goby<-lsmeans(mod.1.goby, ~ seaweed|morph)
+  library(emmeans)
+  
+  jnd_goby <- emmeans(mod.1.goby, ~ seaweed | morph, type = "response")
   pairs(jnd_goby)
-  jnd_pollack<-lsmeans(mod.1.pollack, ~ seaweed|morph)  
+  
+  jnd_pollack<-lsmeans(mod.1.pollack, ~ seaweed|morph, type = "response")  
   pairs(jnd_pollack)  
   
