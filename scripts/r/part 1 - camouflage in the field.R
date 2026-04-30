@@ -19,6 +19,18 @@ jnd_field_pollack$seaweed<-factor(jnd_field_pollack$seaweed,levels=c("lettuce","
 jnd_field_pollack$morph<-factor(jnd_field_pollack$morph,levels=c("G","R"))
 jnd_field_pollack$ID<-as.factor(jnd_field_pollack$ID)
 
+# Numerical Exploration ---- IMPLEMENTED BY MATI
+round(pastecs::stat.desc(jnd_field_goby$jnd, norm = T), 2)
+round(pastecs::stat.desc(jnd_field_pollack$jnd, norm = T), 2)
+  
+  # The shapiro wilk says not normally distributed.
+
+hist(jnd_field_goby$jnd)
+hist(jnd_field_pollack$jnd)
+
+performance::check_model(model_goby_1)
+performance::check_residuals(model_goby_1)
+
 ## analysing prawn JNDs - Goby vision ##
 # defining the first model: morph and seaweed as fixed factor and interacting
 # and prawn ID as a random factor
