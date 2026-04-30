@@ -6,8 +6,9 @@ library(lme4)
 library(lmerTest)
 library(lsmeans)
 
-jnd_field_goby<-read.csv("jnd_field_goby.csv",header=T)
-jnd_field_pollack<-read.csv("jnd_field_pollack.csv",header=T)
+jnd_field_goby<-read.csv("C:/Users/tpaye/OneDrive/Desktop/Bachelor/6. Semester (FS 26)/Blockkurse/BME 321/BME_321_MiniProject/data/static_camouflage/jnd_field_goby.csv",header=T)
+jnd_field_pollack<-read.csv("C:/Users/tpaye/OneDrive/Desktop/Bachelor/6. Semester (FS 26)/Blockkurse/BME 321/BME_321_MiniProject/data/static_camouflage/jnd_field_pollack.csv",header=T)
+
 
 # defining all factors
 jnd_field_goby$seaweed<-factor(jnd_field_goby$seaweed,levels=c("lettuce","dulse"))
